@@ -6,6 +6,22 @@
 **Prepared by:** Thinh Nguyen
 
 ---
+## 📦 Stack Proposal
+
+| Layer | Technology | Notes |
+|:------|:-----------|:------|
+| Web Framework | **axum** | REST API server |
+| MQTT Client | **rumqttc** | Async MQTT client |
+| Database Access | **sqlx** | Async SQL Database client (PostgreSQL or SQLite) |
+| File Handling | **tokio::fs**, **uuid** | Save firmware file |
+| Hashing | **sha2 (Sha256)** | Compute firmware checksum |
+| Authentication | **jsonwebtoken** | JWT Auth for Admin API |
+| Upload Firmware | **axum::extract::Multipart** | Handle multipart form file uploads |
+| Logging | **tracing** | Structured logging |
+| Build Tool | **cargo** | Build and manage Rust project |
+| Deployment (optional) | **docker** | For containerization and deployment |
+
+---
 
 ## 1. Purpose
 
@@ -313,7 +329,7 @@ Payload:
 
 | Layer | Technology |
 |:------|:-----------|
-| Backend | Rust (axum, actix-web, sqlx, serde) |
+| Backend | Rust (axum) |
 | Database | PostgreSQL or SQLite |
 | File Storage | Local /var/firmware/ or AWS S3 |
 | Front-end | ReactJS, VueJS, or Svelte |
