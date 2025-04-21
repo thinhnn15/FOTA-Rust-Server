@@ -1,0 +1,1 @@
+// Update result model struct
