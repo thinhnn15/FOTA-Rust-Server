@@ -37,3 +37,18 @@ pub async fn create_device(pool: &PgPool, new_device: NewDevice) -> Result<Devic
 
     Ok(device)
 }
+
+pub async fn device_exists(pool: &PgPool, device_id: &str) -> Result<bool> {
+    let record = sqlx::query_scalar!(
+        r#"
+        SELECT EXISTS (
+            SELECT 1 FROM devices WHERE device_id = $1
+        )
+        "#,
+        device_id
+    )
+    .fetch_one(pool)
+    .await?;
+
+    Ok(record.unwrap_or(false))
+}

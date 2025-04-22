@@ -1,1 +1,41 @@
+# Rust build output
+/target/
+**/*.rs.bk
+
+# Cargo package manager
+Cargo.lock
+
+# SQLx offline mode
+sqlx-data.json
+
+# dotenv environment files
 .env
+.env.*
+
+# VSCode settings (optional)
+/.vscode/
+
+# Logs
+logs/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# Debugger files
+*.dSYM/
+*.pdb
+*.obj
+
+# Node modules if you have frontend in same repo
+node_modules/
+
+# Build output of frontend (if any)
+/dist/
+/build/
