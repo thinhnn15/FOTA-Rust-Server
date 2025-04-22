@@ -2,6 +2,7 @@ use crate::db::AppState;
 use anyhow::Result;
 use sqlx::PgPool;
 use uuid::Uuid;
+use crate::models::status_log::DeviceStatusLog;
 
 pub async fn save_device_status_log(
     pool: &PgPool,
@@ -21,4 +22,22 @@ pub async fn save_device_status_log(
     .await?;
 
     Ok(())
+}
+
+pub async fn get_status_logs_by_device_id(
+    pool: &PgPool,
+    device_id: &str,
+) -> Result<Vec<DeviceStatusLog>> {
+    let logs = sqlx::query_as::<_, DeviceStatusLog>(
+        r#"
+        SELECT id, device_id, payload, created_at
+        FROM device_status_logs
+        WHERE device_id = $1
+        "#,
+    )
+    .bind(device_id)
+    .fetch_all(pool)
+    .await?;
+
+    Ok(logs)
 }
